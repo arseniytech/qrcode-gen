@@ -5,7 +5,7 @@ import { createServer } from 'node:http';
 import { readFile } from 'node:fs/promises';
 import { extname, join } from 'node:path';
 
-const root = join(import.meta.dirname, 'demo');
+const root = import.meta.dirname;
 const port = process.env.PORT ?? 3000;
 
 const types = {
@@ -16,7 +16,12 @@ const types = {
 
 createServer(async (req, res) => {
   try {
-    const path = req.url === '/' ? '/index.html' : req.url.split('?')[0];
+    let path = req.url.split('?')[0];
+    if (path === '/') {
+      res.writeHead(302, { Location: '/demo/index.html' });
+      res.end();
+      return;
+    }
     const file = join(root, path);
     if (!file.startsWith(root)) throw new Error('forbidden');
     const body = await readFile(file);
