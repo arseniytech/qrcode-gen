@@ -1,0 +1,23 @@
+{
+  "name": "qrcode-gen",
+  "version": "1.0.0",
+  "description": "QR code generator written from scratch — zero dependencies, spec-level implementation",
+  "type": "module",
+  "bin": {
+    "qrgen": "bin/qrgen.js"
+  },
+  "scripts": {
+    "demo": "node serve.js"
+  },
+  "engines": {
+    "node": ">=18"
+  },
+  "keywords": [
+    "qr",
+    "qrcode",
+    "reed-solomon",
+    "png",
+    "zero-dependency"
+  ],
+  "license": "MIT"
+}
