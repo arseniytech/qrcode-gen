@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>qrcode-gen · live demo</title>
+  <style>
+    :root {
+      --bg: #0f1117;
+      --panel: #171a23;
+      --border: #262b38;
+      --text: #e6e9f0;
+      --muted: #8b91a3;
+      --accent: #4f8cff;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      min-height: 100vh;
+      display: grid;
+      place-items: center;
+      background: var(--bg);
+      color: var(--text);
+      font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+    }
+    main {
+      width: min(560px, 90vw);
+      padding: 32px;
+      background: var(--panel);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+    }
+    h1 { margin: 0 0 4px; font-size: 20px; }
+    p.sub { margin: 0 0 24px; color: var(--muted); font-size: 13px; }
+    textarea {
+      width: 100%;
+      height: 88px;
+      resize: vertical;
+      padding: 10px 12px;
+      background: var(--bg);
+      color: var(--text);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      font: inherit;
+    }
+    .controls {
+      display: flex;
+      gap: 8px;
+      margin: 12px 0 20px;
+    }
+    select, button {
+      padding: 8px 14px;
+      background: var(--bg);
+      color: var(--text);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      font: inherit;
+      font-size: 13px;
+    }
+    button { background: var(--accent); border-color: var(--accent); cursor: pointer; }
+    button:active { transform: translateY(1px); }
+    output {
+      display: grid;
+      place-items: center;
+      gap: 8px;
+    }
+    #qr { image-rendering: pixelated; border: 1px solid var(--border); background: #fff; padding: 8px; }
+    #meta { color: var(--muted); font-size: 12px; }
+  </style>
+</head>
+<body>
+  <main>
+    <h1>qrcode-gen demo</h1>
+    <p class="sub">a QR code generator with zero dependencies, rendered live in your browser</p>
+    <textarea id="input" spellcheck="false">https://github.com/arseniytech</textarea>
+    <div class="controls">
+      <select id="level" title="error correction level">
+        <option value="L">L · 7%</option>
+        <option value="M" selected>M · 15%</option>
+        <option value="Q">Q · 25%</option>
+        <option value="H">H · 30%</option>
+      </select>
+      <button id="go">generate</button>
+      <button id="dl">download png</button>
+    </div>
+    <output>
+      <img id="qr" alt="generated QR code" />
+      <div id="meta"></div>
+    </output>
+  </main>
+  <script type="module" src="./main.js"></script>
+</body>
+</html>
