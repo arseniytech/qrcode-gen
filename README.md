@@ -78,7 +78,7 @@ qr.png
 - `src/reed-solomon.js` — the whole of GF(256) fits in ~50 lines: log/antilog tables, `gfMul`, generator polynomial as the product of `(x − αⁱ)`, and encoding via polynomial division with coefficients applied in reverse order. This was the finickiest part to get right.
 - `src/matrix.js` — format string built by BCH-coding 5 bits against generator `10100110111` and XORing the 15-bit mask `101010000010010`; three copies placed around the finders plus the dark module. Version info (≥ v7) is the 18-bit Golay-coded variant.
 - `src/mask.js` — the four ISO penalty rules: run-length, 2×2 blocks, the `1011101` finder-like pattern, and dark-module proportion.
-- `src/png.js` — writes a valid PNG by hand: IHDR, a `zlib.deflateSync`-compressed IDAT, its own CRC-32 implementation. No image library involved.
+- `src/png.js` — writes a valid PNG by hand: IHDR, IDAT as a hand-built stored-deflate zlib stream, its own CRC-32 implementation. No image or compression library involved — the same file runs in Node and in the browser.
 
 ## Verification
 
